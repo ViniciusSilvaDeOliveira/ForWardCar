@@ -24,13 +24,11 @@ public class DatabaseConnectionTest {
             ResultSet resultSet = statement.executeQuery(sqlQuery);//a consulta me retorna um obejto ResultSet
 
             while (resultSet.next()) {
-                String primeiroNome = resultSet.getNString("primeiro_nome");
+                String primeiroNome = resultSet.getString("primeiro_nome");
                 String sobrenome = resultSet.getString("sobrenome");
                 String usuario = resultSet.getString("usuario");
                 String senha = resultSet.getString("senha");
             }
-
-            
 
             resultSet.close();
             statement.close();

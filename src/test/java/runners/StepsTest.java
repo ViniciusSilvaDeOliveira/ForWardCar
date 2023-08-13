@@ -1,5 +1,6 @@
 package runners;
 
+import conexaoBancoDeDados.DatabaseConnectionTest;
 import io.cucumber.java.es.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Quando;
@@ -9,8 +10,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pageObjects.Login;
 
 public class StepsTest {
-    private ChromeDriver navegador = new ChromeDriver();
+    ChromeDriver navegador = new ChromeDriver();
     Login login = new Login(navegador);
+    DatabaseConnectionTest conexao = new DatabaseConnectionTest();
 
     @Dado("que acesso a url {string}")
     public void queAcessoAUrl(String url) throws Exception{
@@ -34,6 +36,6 @@ public class StepsTest {
     @E("prencho as informações de cadastro confirmando o registro")
     public void prenchoAsInformaçõesDeCadastroConfirmandoORegistro() throws InterruptedException {
         Thread.sleep(3000);
-
+        //login.preencherCampoNome(conexao);
     }
 }

@@ -7,7 +7,7 @@ public class Login {
     private WebDriver driver;
     private By btnGuest = By.xpath("/html/body/div[1]/div[1]/div/div/div[2]/ul/li[5]/a/span[1]");
     private By btnRegister = By.xpath("/html/body/div[1]/div[1]/div/div/div[2]/ul/li[5]/ul/li[2]/a");
-    private By campoName = By.xpath("//*[@id=\"registration-form\"]/fieldset/div[1]/input");
+    private By campoNome = By.xpath("//*[@id=\"registration-form\"]/fieldset/div[1]/input");
     private By campoSobrenome = By.xpath("//*[@id=\"registration-form\"]/fieldset/div[2]/input");
     private By campoUsername = By.xpath("//*[@id=\"registration-form\"]/fieldset/div[3]/input");
     private By campoSenha = By.xpath("//*[@id=\"registration-form\"]/fieldset/div[4]/input");
@@ -23,5 +23,9 @@ public class Login {
 
     public void clicarBtnRegister(){
         this.driver.findElement(btnRegister).click();
+    }
+
+    public void preencherCampoNome(String nome) {
+        this.driver.findElement(campoNome).sendKeys(nome);
     }
 }
