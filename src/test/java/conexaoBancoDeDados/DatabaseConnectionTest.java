@@ -2,9 +2,7 @@ package conexaoBancoDeDados;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 public class DatabaseConnectionTest {
@@ -20,15 +18,28 @@ public class DatabaseConnectionTest {
             Class.forName("org.postgresql.Driver");
 
             //Estabelecer a conexão
-            Connection connection = DriverManager.getConnection(jdbcUrl, user, password);
-            System.out.println("Conexão bem-sucedida!");
+            Connection connection = DriverManager.getConnection(jdbcUrl, user, password);//estou realizando a conexão com o banco de dados
+            Statement statement = connection.createStatement();//Statement é usado para executar consultas sql
+            String sqlQuery = "SELECT * FROM registro";
+            ResultSet resultSet = statement.executeQuery(sqlQuery);//a consulta me retorna um obejto ResultSet
+
+            while (resultSet.next()) {
+                String primeiroNome = resultSet.getNString("primeiro_nome");
+                String sobrenome = resultSet.getString("sobrenome");
+                String usuario = resultSet.getString("usuario");
+                String senha = resultSet.getString("senha");
+            }
+
+            
+
+            resultSet.close();
+            statement.close();
+            connection.close();
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 }

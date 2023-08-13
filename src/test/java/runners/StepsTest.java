@@ -1,6 +1,7 @@
 package runners;
 
 import io.cucumber.java.es.Dado;
+import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Quando;
 import org.junit.runner.Runner;
 import org.openqa.selenium.By;
@@ -12,14 +13,27 @@ public class StepsTest {
     Login login = new Login(navegador);
 
     @Dado("que acesso a url {string}")
-    public void que_acesso_a_url(String url) throws Exception{
+    public void queAcessoAUrl(String url) throws Exception{
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\tivin\\Desktop\\Estudos\\EstagioBN\\DesafioWeb\\ForWardCar\\src\\main\\resources\\chromedriver\\chromedriver.exe");//mostrei aonde está
         navegador.get(url); //criei uma nova aba do navegador
     }
 
     @Quando("clico em Guest")
-    public void clico_em_guest() throws InterruptedException {
-        Thread.sleep(6000);
+    public void clicoEmGuest() throws InterruptedException {
+        Thread.sleep(3000);
         login.clicarBtnGuest();
+    }
+
+    @E("seleciono register")
+    public void selecionoRegister() throws InterruptedException {
+        Thread.sleep(3000);
+        login.clicarBtnRegister();
+    }
+
+
+    @E("prencho as informações de cadastro confirmando o registro")
+    public void prenchoAsInformaçõesDeCadastroConfirmandoORegistro() throws InterruptedException {
+        Thread.sleep(3000);
+
     }
 }
