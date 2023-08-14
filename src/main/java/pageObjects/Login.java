@@ -28,4 +28,20 @@ public class Login {
     public void preencherCampoNome(String nome) {
         this.driver.findElement(campoNome).sendKeys(nome);
     }
+
+    public void preencherCampoSobrenome(String sobrenome) {
+        this.driver.findElement(campoSobrenome).sendKeys(sobrenome);
+    }
+
+    public void preencherCampoUsuario(String usuario) {
+        this.driver.findElement(campoUsername).sendKeys(usuario);
+    }
+
+    public void preencherCampoSenha(String senha) {
+        this.driver.findElement(campoSenha).sendKeys(senha);
+    }
+
+    public void clicarBtnRegisterLogin() {
+        this.driver.findElement(btnRegisterLogin).click();
+    }
 }

@@ -1,12 +1,19 @@
 package conexaoBancoDeDados;
 
+import pageObjects.Login;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
 
 public class DatabaseConnectionTest {
-    public static void main(String[] args) throws IOException {
+    String primeiroNome;
+    String sobrenome;
+    String usuario;
+    String senha;
+
+    public DatabaseConnectionTest() throws IOException {
         Properties prop = new Properties();
         prop.load(new FileInputStream("C:\\Users\\tivin\\Desktop\\Estudos\\EstagioBN\\DesafioWeb\\ForWardCar\\src\\test\\resources\\properties\\conexao.properties"));
 
@@ -24,10 +31,10 @@ public class DatabaseConnectionTest {
             ResultSet resultSet = statement.executeQuery(sqlQuery);//a consulta me retorna um obejto ResultSet
 
             while (resultSet.next()) {
-                String primeiroNome = resultSet.getString("primeiro_nome");
-                String sobrenome = resultSet.getString("sobrenome");
-                String usuario = resultSet.getString("usuario");
-                String senha = resultSet.getString("senha");
+                primeiroNome = resultSet.getString("primeiro_nome");
+                sobrenome = resultSet.getString("sobrenome");
+                usuario = resultSet.getString("usuario");
+                senha = resultSet.getString("senha");
             }
 
             resultSet.close();
@@ -39,5 +46,37 @@ public class DatabaseConnectionTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getPrimeiroNome() {
+        return primeiroNome;
+    }
+
+    public void setPrimeiroNome(String primeiroNome) {
+        this.primeiroNome = primeiroNome;
+    }
+
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
