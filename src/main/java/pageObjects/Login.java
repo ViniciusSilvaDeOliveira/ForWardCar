@@ -1,5 +1,6 @@
 package pageObjects;
 
+import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -12,15 +13,10 @@ public class Login {
     private By campoUsername = By.xpath("//*[@id=\"registration-form\"]/fieldset/div[3]/input");
     private By campoSenha = By.xpath("//*[@id=\"registration-form\"]/fieldset/div[4]/input");
     private By btnRegisterLogin = By.xpath("//*[@id=\"registration-form\"]/fieldset/div[5]/button");
-
     private By btnSignIn = By.xpath("//*[@id=\"login-form\"]/fieldset/div[3]/button");
 
     public By getBtnSignIn() {
         return btnSignIn;
-    }
-
-    public void setBtnSignIn(By btnSignIn) {
-        this.btnSignIn = btnSignIn;
     }
 
     public Login(WebDriver driver) {
