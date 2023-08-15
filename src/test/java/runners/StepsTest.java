@@ -5,6 +5,7 @@ import io.cucumber.java.es.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
+import org.junit.Assert;
 import org.junit.runner.Runner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -54,7 +55,7 @@ public class StepsTest {
     }
 
     @Entao("sou redirecionado para a tela de login")
-    public void souRedirecionadoParaATelaDeLogin() {
-
+    public void souRedirecionadoParaATelaDeLogin() throws Exception{
+        login.getBtnSignIn().equals("//*[@id=\"login-form\"]/fieldset/div[3]/button");
     }
 }
