@@ -56,6 +56,6 @@ public class StepsTest {
 
     @Entao("sou redirecionado para a tela de login")
     public void souRedirecionadoParaATelaDeLogin() throws Exception{
-        login.getBtnSignIn().equals("//*[@id=\"login-form\"]/fieldset/div[3]/button");
+        Assert.assertTrue(login.textoSignIn());
     }
 }

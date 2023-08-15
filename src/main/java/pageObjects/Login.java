@@ -14,6 +14,15 @@ public class Login {
     private By campoSenha = By.xpath("//*[@id=\"registration-form\"]/fieldset/div[4]/input");
     private By btnRegisterLogin = By.xpath("//*[@id=\"registration-form\"]/fieldset/div[5]/button");
     private By btnSignIn = By.xpath("//*[@id=\"login-form\"]/fieldset/div[3]/button");
+    private By signIn = By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[1]/h3");
+
+    public boolean textoSignIn(){
+        String texto = this.driver.findElement(signIn).getText();
+        if (texto.equals("Please sign in")){
+            return true;
+        }
+        return false;
+    }
 
     public By getBtnSignIn() {
         return btnSignIn;
