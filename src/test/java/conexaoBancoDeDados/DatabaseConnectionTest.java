@@ -5,13 +5,15 @@ import pageObjects.Login;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class DatabaseConnectionTest {
-    String primeiroNome;
-    String sobrenome;
-    String usuario;
-    String senha;
+    List<String> primeirosNomes = new ArrayList<>();
+    List<String> sobrenomes = new ArrayList<>();
+    List<String> usuarios = new ArrayList<>();
+    List<String> senhas = new ArrayList<>();
 
     public DatabaseConnectionTest() throws IOException {
         Properties prop = new Properties();
@@ -31,10 +33,10 @@ public class DatabaseConnectionTest {
             ResultSet resultSet = statement.executeQuery(sqlQuery);//a consulta me retorna um obejto ResultSet
 
             while (resultSet.next()) {
-                primeiroNome = resultSet.getString("primeiro_nome");
-                sobrenome = resultSet.getString("sobrenome");
-                usuario = resultSet.getString("usuario");
-                senha = resultSet.getString("senha");
+                primeirosNomes.add(resultSet.getString("primeiro_nome"));
+                sobrenomes.add(resultSet.getString("sobrenome"));
+                usuarios.add(resultSet.getString("usuario"));
+                senhas.add(resultSet.getString("senha"));
             }
 
             resultSet.close();
@@ -48,35 +50,19 @@ public class DatabaseConnectionTest {
         }
     }
 
-    public String getPrimeiroNome() {
-        return primeiroNome;
+    public List<String> getPrimeiroNome() {
+        return primeirosNomes;
     }
 
-    public void setPrimeiroNome(String primeiroNome) {
-        this.primeiroNome = primeiroNome;
+    public List<String> getSobrenome() {
+        return sobrenomes;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
+    public List<String> getUsuario() {
+        return usuarios;
     }
 
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public List<String> getSenha() {
+        return senhas;
     }
 }

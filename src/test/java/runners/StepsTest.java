@@ -5,20 +5,26 @@ import io.cucumber.java.es.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
-import org.junit.Assert;
-import org.junit.runner.Runner;
-import org.openqa.selenium.By;
+import static org.junit.Assert.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pageObjects.Login;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StepsTest {
     ChromeDriver navegador = new ChromeDriver();
     Login login = new Login(navegador);
     DatabaseConnectionTest conexao;
     WebDriver driver;
+
+    List<String> primeiroNome;
+    List<String> sobrenome;
+    List<String> usuario;
+    List<String> senha;
+    List<Boolean> validacoes = new ArrayList<>();
 
     public StepsTest() throws IOException {
         conexao = new DatabaseConnectionTest();
@@ -45,17 +51,30 @@ public class StepsTest {
 
     @E("prencho as informações de cadastro confirmando o registro")
     public void prenchoAsInformaçõesDeCadastroConfirmandoORegistro() throws InterruptedException {
-        Thread.sleep(3000);
-        login.preencherCampoNome(conexao.getPrimeiroNome());
-        login.preencherCampoSobrenome(conexao.getSobrenome());
-        login.preencherCampoUsuario(conexao.getUsuario());
-        login.preencherCampoSenha(conexao.getSenha());
-        Thread.sleep(3000);
-        login.clicarBtnRegisterLogin();
+        primeiroNome = conexao.getPrimeiroNome();
+        sobrenome = conexao.getSobrenome();
+        usuario = conexao.getUsuario();
+        senha = conexao.getSenha();
+
+        for(int i = 0; i < senha.size(); i++){
+            login.preencherCampoNome(primeiroNome.get(i));
+            login.preencherCampoSobrenome(sobrenome.get(i));
+            login.preencherCampoUsuario(usuario.get(i));
+            login.preencherCampoSenha(senha.get(i));
+            Thread.sleep(3000);
+            login.clicarBtnRegisterLogin();
+            Thread.sleep(3000);
+            validacoes.add(login.textoSignIn());
+            login.clicarBtnGuest();
+            login.clicarBtnRegister();
+        }
     }
 
     @Entao("sou redirecionado para a tela de login")
-    public void souRedirecionadoParaATelaDeLogin() throws Exception{
-        Assert.assertTrue(login.textoSignIn());
+    public void souRedirecionadoParaATelaDeLogin(){
+        for (int i = 0; i < validacoes.size(); i++){
+            assertEquals(validacoes.get(i).toString(), String.valueOf(true));
+        }
+        navegador.quit();
     }
 }

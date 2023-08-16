@@ -1,6 +1,5 @@
 package pageObjects;
 
-import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -16,7 +15,7 @@ public class Login {
     private By btnSignIn = By.xpath("//*[@id=\"login-form\"]/fieldset/div[3]/button");
     private By signIn = By.xpath("/html/body/div[1]/div[2]/div/div/div/div/div[1]/h3");
 
-    public boolean textoSignIn(){
+    public Boolean textoSignIn(){
         String texto = this.driver.findElement(signIn).getText();
         if (texto.equals("Please sign in")){
             return true;
@@ -41,18 +40,22 @@ public class Login {
     }
 
     public void preencherCampoNome(String nome) {
+        this.driver.findElement(campoNome).clear();
         this.driver.findElement(campoNome).sendKeys(nome);
     }
 
     public void preencherCampoSobrenome(String sobrenome) {
+        this.driver.findElement(campoSobrenome).clear();
         this.driver.findElement(campoSobrenome).sendKeys(sobrenome);
     }
 
     public void preencherCampoUsuario(String usuario) {
+        this.driver.findElement(campoUsername).clear();
         this.driver.findElement(campoUsername).sendKeys(usuario);
     }
 
     public void preencherCampoSenha(String senha) {
+        this.driver.findElement(campoSenha).clear();
         this.driver.findElement(campoSenha).sendKeys(senha);
     }
 
